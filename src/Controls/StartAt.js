@@ -34,6 +34,7 @@ export default class StartAt extends Component {
     second:      0,
     millisecond: 0,
     triggerTime: moment().add(1, 'days'),
+    // triggerTime: moment().add(2, 'seconds'),
   }
 
   componentDidMount() {
@@ -57,7 +58,6 @@ export default class StartAt extends Component {
 
   setTriggerTime = () => {
     const { hour, minute, second, millisecond } = this.state
-    console.log(this.state)
 
     const currentTime = moment()
     const triggerTime = moment()
@@ -71,8 +71,6 @@ export default class StartAt extends Component {
     }
 
     this.setState({ triggerTime })
-
-    console.log(this.timer)
 
     // Kick off the timer heartbeat
     if (this.timer === undefined) {
@@ -89,7 +87,6 @@ export default class StartAt extends Component {
   }
 
   heartbeat = () => {
-    console.log(this.passedTriggerTime())
     if (this.passedTriggerTime()) {
       clearTimeout(this.timer)
       this.timer = undefined
@@ -105,40 +102,44 @@ export default class StartAt extends Component {
   render() {
     return (
       <section id="StartAt">
-        <div>
-          <span>Hour</span>
-          <select name="hour" onChange={this.handleChange}>
-            {hours.map(hour =>
-              <option value={hour}>{hour}</option>
-            )}
-          </select>
-        </div>
+        <p>Start at time:</p>
 
         <div>
-          <span>Minute</span>
-          <select name="minute" onChange={this.handleChange}>
-            {minutes.map(minute =>
-              <option value={minute}>{minute}</option>
-            )}
-          </select>
-        </div>
+          <div>
+            <span>Hour</span>
+            <select name="hour" onChange={this.handleChange}>
+              {hours.map(hour =>
+                <option value={hour}>{hour}</option>
+              )}
+            </select>
+          </div>
 
-        <div>
-          <span>Second</span>
-          <select name="second" onChange={this.handleChange}>
-            {seconds.map(second =>
-              <option value={second}>{second}</option>
-            )}
-          </select>
-        </div>
+          <div>
+            <span>Minute</span>
+            <select name="minute" onChange={this.handleChange}>
+              {minutes.map(minute =>
+                <option value={minute}>{minute}</option>
+              )}
+            </select>
+          </div>
 
-        <div>
-          <span>Millisecond</span>
-          <select name="millisecond" onChange={this.handleChange}>
-            {milliseconds.map(millisecond =>
-              <option value={millisecond}>{millisecond}</option>
-            )}
-          </select>
+          <div>
+            <span>Second</span>
+            <select name="second" onChange={this.handleChange}>
+              {seconds.map(second =>
+                <option value={second}>{second}</option>
+              )}
+            </select>
+          </div>
+
+          <div>
+            <span>Millisecond</span>
+            <select name="millisecond" onChange={this.handleChange}>
+              {milliseconds.map(millisecond =>
+                <option value={millisecond}>{millisecond}</option>
+              )}
+            </select>
+          </div>
         </div>
       </section>
     )

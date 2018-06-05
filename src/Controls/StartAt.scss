@@ -1,5 +1,11 @@
 #StartAt {
-  display: flex;
+  & > div {
+    display: flex;
+
+    & > div {
+      margin: 1rem;
+    }
+  }
 
   span {
     display: block;
